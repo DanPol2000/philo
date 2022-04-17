@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 14:21:35 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/16 16:35:10 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/17 12:26:36 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static long	time_of_finish(t_philo *philo)
 	pthread_mutex_unlock(philo->time);
 	if (time - philo->start_eat > philo->time_die)
 	{
-		// printf("START_EAT = %lld\n", philo->start_eat - philo->time_start);
-		// printf("RAZNICA = %lld\n", time - philo->start_eat);
-		// printf("TIME = %lld\n", time - philo->time_start);
 		if (philo->time_start == 0 && time % 1000 < philo->time_die)
 			return (0);
 		return (time);

@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 13:29:17 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/16 16:37:28 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/17 12:38:15 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*live(void *arg)
 	args->start_eat = args->time_start;
 	while (1)
 	{
+		usleep(300);
 		eating(args);
 		sleeping(args);
 		thinking(args);
@@ -61,13 +62,13 @@ void	eating(t_philo *philo)
 		take_right_fork(philo);
 		take_left_fork(philo);
 	}
-	pthread_mutex_lock(philo->time);
-	philo->start_eat = ft_time();
-	pthread_mutex_unlock(philo->time);
 	pthread_mutex_lock(philo->print);
 	printf("%lld %d is eating\n", \
 	philo->start_eat - philo->time_start, philo->id);
 	pthread_mutex_unlock(philo->print);
+	pthread_mutex_lock(philo->time);
+	philo->start_eat = ft_time();
+	pthread_mutex_unlock(philo->time);
 	ft_sleep(philo->time_eat);
 	pthread_mutex_unlock(philo->left_fork_m);
 	pthread_mutex_unlock(philo->right_fork_m);
