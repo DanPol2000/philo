@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 13:29:17 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/17 12:38:15 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/17 13:06:01 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	*live(void *arg)
 		usleep(300);
 		eating(args);
 		sleeping(args);
-		thinking(args);
 		if (args->number_of_times != -1)
 			args->number_of_times--;
 	}
@@ -38,7 +37,6 @@ static void	take_right_fork(t_philo *philo)
 	printf("%lld %d has taken a fork\n", \
 	ft_time() - philo->time_start, philo->id);
 	pthread_mutex_unlock(philo->print);
-	
 }
 
 static void	take_left_fork(t_philo *philo)
@@ -64,7 +62,7 @@ void	eating(t_philo *philo)
 	}
 	pthread_mutex_lock(philo->print);
 	printf("%lld %d is eating\n", \
-	philo->start_eat - philo->time_start, philo->id);
+	ft_time() - philo->time_start, philo->id);
 	pthread_mutex_unlock(philo->print);
 	pthread_mutex_lock(philo->time);
 	philo->start_eat = ft_time();
@@ -74,18 +72,13 @@ void	eating(t_philo *philo)
 	pthread_mutex_unlock(philo->right_fork_m);
 }
 
-void	thinking(t_philo *philo)
-{
-	pthread_mutex_lock(philo->print);
-	printf("%lld %d is thinking\n", ft_time() - philo->time_start, philo->id);
-	pthread_mutex_unlock(philo->print);
-}
-
 void	sleeping(t_philo *philo)
 {
 	pthread_mutex_lock(philo->print);
 	printf("%lld %d is sleeping\n", ft_time() - philo->time_start, philo->id);
 	pthread_mutex_unlock(philo->print);
 	ft_sleep(philo->time_sleep);
+	pthread_mutex_lock(philo->print);
+	printf("%lld %d is thinking\n", ft_time() - philo->time_start, philo->id);
+	pthread_mutex_unlock(philo->print);
 }
-

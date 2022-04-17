@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 12:48:41 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/16 14:35:10 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/17 12:54:42 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_init_philo(t_philo *philo, t_data *data, char **argv, int i);
 int	ft_atoi(const char *str);
 int	ft_init_mut(t_data *data);
 void	eating(t_philo *philo);
-void	thinking(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	ft_sleep(long long time);
 void	*live(void *arg);

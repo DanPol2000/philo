@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 12:48:45 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/16 14:33:01 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/17 12:55:50 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	int				i;
 	t_data			data;
-	pthread_t	monitoring;
+	pthread_t		monitoring;
 
 	i = 0;
 	monitoring = NULL;

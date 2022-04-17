@@ -6,7 +6,7 @@
 #    By: chorse <chorse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 14:31:42 by chorse            #+#    #+#              #
-#    Updated: 2022/04/16 16:01:44 by chorse           ###   ########.fr        #
+#    Updated: 2022/04/17 12:49:55 by chorse           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra 
 
 INC = philo.h
 
