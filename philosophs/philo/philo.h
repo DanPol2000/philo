@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 12:48:41 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/19 15:18:23 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/22 17:43:28 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,26 @@ typedef struct s_philo
 	pthread_mutex_t	*print;
 	long long		last_time_eat;
 	pthread_mutex_t	*time;
+	pthread_mutex_t	*num_times;
 	long long		time_start;
 	long long		start_eat;
-	int				number_of_times;
+	int				cycles;
+	int				must_eat;
 	int				id;
 }	t_philo;
 
 typedef struct s_data
 {
 	int				number;
-	int				number_of_times;
+	int				cycles;
+	int				eat;
+	int				end;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*time;
 	pthread_t		*thread;
 	pthread_mutex_t	*print;
+	pthread_mutex_t	*num_times;
 }	t_data;
 
 long	ft_time(void);
@@ -60,5 +65,8 @@ void	ft_sleep(long long msec);
 void	*live(void *arg);
 void	*moni(void *arg);
 void	red_button(t_data *data, int i, long time);
-
+void	*circle(void *arg);
+ long	ft_check_num(t_data *data);
+ void	ft_define_cycles_numb(t_data *data);
+ 
 #endif

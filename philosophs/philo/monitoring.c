@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 14:21:35 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/19 15:12:40 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/22 17:53:10 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,16 @@ void	*moni(void *arg)
 	usleep(3000);
 	while (1)
 	{
-		usleep(500);
-		if (data->philo[i].number_of_times == 0)
+		usleep(400);
+		pthread_mutex_lock(data->philo[i].num_times);
+		if (data->philo[i].cycles == 0)
 		{
-			red_button(data, i, time);
+			kill_philo(data);
+			destroy_mt(data);
+			pthread_mutex_unlock(data->philo[i].num_times);
 			break ;
 		}
+		pthread_mutex_unlock(data->philo[i].num_times);
 		time = time_of_finish(&data->philo[i]);
 		if (time > 0)
 		{
@@ -95,17 +99,8 @@ void	*moni(void *arg)
 
 void	red_button(t_data *data, int i, long time)
 {
-	if (data->philo[i].number_of_times != 0)
-	{
-		pthread_mutex_lock(data->print);
-		printf("%lld %d died\n", \
-		time - data->philo[i].time_start, data->philo[i].id);
-		kill_philo(data);
-		destroy_mt(data);
-	}
-	else
-	{
-		kill_philo(data);
-		destroy_mt(data);
-	}
+	pthread_mutex_lock(data->print);
+	printf("%lld %d died\n", time - data->philo[i].time_start, data->philo[i].id);
+	kill_philo(data);
+	destroy_mt(data);
 }

@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 13:29:17 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/19 15:12:21 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/22 17:44:13 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@ void	*live(void *arg)
 	args->time_start = ft_time();
 	args->start_eat = args->time_start;
 	pthread_mutex_unlock(args->time);
-	while (1)
+	// if (args->num % 2 == 0)
+	// 	usleep(500);
+	while (args->cycles)
 	{
+		usleep(300);
+		if (args->must_eat != -1)
+		{
+			pthread_mutex_lock(args->num_times);
+			args->cycles--;
+			pthread_mutex_unlock(args->num_times);
+		}
 		eating(args);
 		sleeping(args);
-		if (args->number_of_times != -1)
-			args->number_of_times--;
 	}
 	return (NULL);
 }
