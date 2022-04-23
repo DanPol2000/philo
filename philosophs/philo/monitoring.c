@@ -6,7 +6,7 @@
 /*   By: chorse <chorse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 14:21:35 by chorse            #+#    #+#             */
-/*   Updated: 2022/04/22 17:53:10 by chorse           ###   ########.fr       */
+/*   Updated: 2022/04/23 11:40:21 by chorse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	*moni(void *arg)
 	usleep(3000);
 	while (1)
 	{
-		usleep(400);
+		ft_sleep(200);
 		pthread_mutex_lock(data->philo[i].num_times);
 		if (data->philo[i].cycles == 0)
 		{
